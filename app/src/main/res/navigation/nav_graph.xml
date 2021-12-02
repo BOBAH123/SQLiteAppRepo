@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/addCountryFragment">
+
+    <fragment
+        android:id="@+id/addCountryFragment"
+        android:name="com.example.fragmentstest.fragments.AddCountryFragment"
+        android:label="fragment_add_country"
+        tools:layout="@layout/fragment_add_country" >
+        <action
+            android:id="@+id/action_addCountryFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.fragmentstest.fragments.CountriesListFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.fragmentstest.fragments.AddTownFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_add_town" >
+        <action
+            android:id="@+id/action_detailsFragment_to_townsListFragment"
+            app:destination="@id/townsListFragment" />
+        <action
+            android:id="@+id/action_detailsFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/townsListFragment"
+        android:name="com.example.fragmentstest.fragments.TownsListFragment"
+        android:label="fragment_towns_list"
+        tools:layout="@layout/fragment_towns_list" >
+        <argument
+            android:name="code"
+            app:argType="integer" />
+    </fragment>
+</navigation>
