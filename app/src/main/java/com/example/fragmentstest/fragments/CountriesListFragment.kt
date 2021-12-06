@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,16 +20,24 @@ import com.example.fragmentstest.rvAdapters.CountriesRecyclerViewAdapter
 class CountriesListFragment : Fragment(), CountriesRecyclerViewAdapter.ClickListener {
 
     private lateinit var adapterCountries: CountriesRecyclerViewAdapter
-    val dataList: ArrayList<DataModel> = ArrayList()
+    lateinit var dataList: ArrayList<DataModel>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_main, container, false)
+        val view = inflater.inflate(R.layout.fragment_countries_list, container, false)
+        dataList = ArrayList()
         buildDisplayData()
         initRV(view)
+        view.findViewById<Button>(R.id.btn_add_country).setOnClickListener {
+            (context as MainActivity).navController.navigate(R.id.action_mainFragment_to_addCountryFragment)
+        }
+
+        view.findViewById<Button>(R.id.btn_show_details).setOnClickListener {
+            (context as MainActivity).navController.navigate(R.id.action_mainFragment_to_townsListFragment)
+        }
         return view
     }
 
@@ -59,8 +68,15 @@ class CountriesListFragment : Fragment(), CountriesRecyclerViewAdapter.ClickList
 
     override fun onClick(dataModel: DataModel) {
         (context as MainActivity).navController.navigate(
+            R.id.action_mainFragment_to_townsListFragment,
+            bundleOf("code" to dataModel.id)
+        )
+    }
+
+    override fun onClick(countryId: Int) {
+        (context as MainActivity).navController.navigate(
             R.id.action_mainFragment_to_detailsFragment,
-            bundleOf("data" to dataModel.id)
+            bundleOf("code" to countryId)
         )
     }
 }

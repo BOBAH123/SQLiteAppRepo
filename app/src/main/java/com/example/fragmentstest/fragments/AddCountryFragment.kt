@@ -27,11 +27,9 @@ class AddCountryFragment : Fragment() {
         countryName = view.findViewById(R.id.country_name_text)
         view.findViewById<Button>(R.id.btn_add).setOnClickListener {
             addCountry()
-        }
-
-        view.findViewById<Button>(R.id.btn_show_all).setOnClickListener {
             (context as MainActivity).navController.navigate(R.id.action_addCountryFragment_to_mainFragment)
         }
+
         return view
     }
 

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.AddDetailsFragment">
+
+    <TextView
+        android:id="@+id/titleDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="@string/hello_blank_fragment"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:text="Add details to this country"
+        android:textSize="32sp" />
+
+    <EditText
+        android:id="@+id/capital_name_text"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="170dp"
+        android:hint="Capital name"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/region_name_text"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginEnd="30dp"
+        android:hint="Region name"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/currency_text"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="240dp"
+        android:hint="Currency"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/population_text"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="240dp"
+        android:layout_marginEnd="30dp"
+        android:hint="Population(m)"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/language_text"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="310dp"
+        android:hint="Language"
+        android:textSize="24sp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom">
+
+        <Button
+            android:id="@+id/btn_add_town"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:text="add"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="8dp"/>
+
+        <Button
+            android:id="@+id/btn_show_town_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="show details"
+            android:textSize="20dp"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="8dp"/>
+
+    </LinearLayout>
+
+
+</FrameLayout>

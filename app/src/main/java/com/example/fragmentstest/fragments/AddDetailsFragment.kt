@@ -15,16 +15,19 @@ import androidx.fragment.app.Fragment
 import com.example.fragmentstest.MainActivity
 import com.example.fragmentstest.R
 import com.example.fragmentstest.dbHelpers.DBHelper
-import com.example.fragmentstest.dbHelpers.TownDBHelper
 
-class AddTownFragment : Fragment() {
+class AddDetailsFragment : Fragment() {
     private var data: Int? = null
-    private lateinit var townName: EditText
+    private lateinit var capitalName: EditText
+    private lateinit var region: EditText
+    private lateinit var currency: EditText
+    private lateinit var population: EditText
+    private lateinit var language: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            data = it.getInt("data")
+            data = it.getInt("code")
         }
     }
 
@@ -32,13 +35,18 @@ class AddTownFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_add_town, container, false)
+        val view = inflater.inflate(R.layout.fragment_add_details, container, false)
         val title = view.findViewById<TextView>(R.id.titleDetail)
-        townName = view.findViewById(R.id.town_name_text)
+        capitalName = view.findViewById(R.id.capital_name_text)
+        region = view.findViewById(R.id.region_name_text)
+        currency = view.findViewById(R.id.currency_text)
+        population = view.findViewById(R.id.population_text)
+        language = view.findViewById(R.id.language_text)
         showCountryName(title)
 
         view.findViewById<Button>(R.id.btn_add_town).setOnClickListener {
-            addTown()
+            addDetails()
+            (context as MainActivity).navController.navigate(R.id.action_detailsFragment_to_mainFragment)
         }
 
         view.findViewById<Button>(R.id.btn_show_town_list).setOnClickListener {
@@ -46,10 +54,6 @@ class AddTownFragment : Fragment() {
                 R.id.action_detailsFragment_to_townsListFragment,
                 bundleOf("code" to data)
             )
-        }
-
-        view.findViewById<Button>(R.id.btn_show_list).setOnClickListener {
-            (context as MainActivity).navController.navigate(R.id.action_detailsFragment_to_mainFragment)
         }
 
         return view
@@ -70,20 +74,29 @@ class AddTownFragment : Fragment() {
         (context as MainActivity).dbHelper.close()
     }
 
-    private fun addTown() {
-        if (!townName.text.isEmpty()) {
+    private fun addDetails() {
+        if (!(region.text.isEmpty() || currency.text.isEmpty() || population.text.isEmpty()
+                    || language.text.isEmpty())) {
             val contentValues = ContentValues()
             contentValues.put(
-                TownDBHelper.KEY_NAME, townName.text.toString()
+                DBHelper.KEY_CAPITAL_NAME, capitalName.text.toString()
             )
             contentValues.put(
-                TownDBHelper.KEY_COUNTRY_ID, data
+                DBHelper.KEY_REGION_NAME, region.text.toString()
             )
-            (context as MainActivity).townDBHelper
+            contentValues.put(
+                DBHelper.KEY_CURRENCY, currency.text.toString()
+            )
+            contentValues.put(
+                DBHelper.KEY_POPULATION, population.text.toString()
+            )
+            contentValues.put(
+                DBHelper.KEY_LANGUAGE, language.text.toString()
+            )
+            (context as MainActivity).dbHelper
                 .writableDatabase
-                .insert(TownDBHelper.KEY_DB_NAME, null, contentValues)
-            (context as MainActivity).townDBHelper.close()
-            townName.text.clear()
+                .update(DBHelper.KEY_DB_NAME,  contentValues, "_id = ?", arrayOf("$data"))
+            (context as MainActivity).dbHelper.close()
         } else {
             Toast.makeText(context, "Enter town name!", Toast.LENGTH_LONG).show()
         }

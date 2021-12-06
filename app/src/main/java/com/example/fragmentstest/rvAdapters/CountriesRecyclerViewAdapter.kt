@@ -3,6 +3,7 @@ package com.example.fragmentstest.rvAdapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fragmentstest.Model.DataModel
@@ -27,6 +28,9 @@ class CountriesRecyclerViewAdapter(
         holder.itemView.setOnClickListener {
             onClickListener.onClick(dataList[position])
         }
+        holder.buttonEdit.setOnClickListener {
+            onClickListener.onClick(dataList[position].id)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -34,14 +38,12 @@ class CountriesRecyclerViewAdapter(
     }
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        var textTitle: TextView
-
-        init {
-            textTitle = view.findViewById(R.id.title_text)
-        }
+        var textTitle: TextView = view.findViewById(R.id.title_text)
+        var buttonEdit: Button = view.findViewById(R.id.btn_add_details)
     }
 
     interface ClickListener {
         fun onClick(dataModel: DataModel)
+        fun onClick(countryId: Int)
     }
 }

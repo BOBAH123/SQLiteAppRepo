@@ -3,11 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.CountriesListFragment">
+    tools:context=".fragments.DetailsListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_rv"
+        android:id="@+id/towns_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:listitem="@layout/details_card_view"/>
 
 </FrameLayout>
