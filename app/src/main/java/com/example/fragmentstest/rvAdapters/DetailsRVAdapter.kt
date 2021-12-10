@@ -1,5 +1,6 @@
 package com.example.fragmentstest.rvAdapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +9,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fragmentstest.Model.DetailsModel
 import com.example.fragmentstest.R
 
-class DetailsRVAdapter(
-    val dataList: List<DetailsModel>,
-) : RecyclerView.Adapter<DetailsRVAdapter.MyViewHolder>() {
+class DetailsRVAdapter: RecyclerView.Adapter<DetailsRVAdapter.MyViewHolder>() {
+
+    var dataList = emptyList<DetailsModel>()
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setList(list: List<DetailsModel>) {
+        dataList = list
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -25,7 +32,7 @@ class DetailsRVAdapter(
         holder.textCapital.text = dataList[position].capital?: "No data"
         holder.textRegion.text = dataList[position].region?: "No data"
         holder.textCurrency.text = dataList[position].currency?: "No data"
-        holder.textPopulation.text = dataList[position].population.toString().plus(" M")
+        holder.textPopulation.text = dataList[position].population?.plus(" M") ?:  "No data"
         holder.textLanguage.text = dataList[position].language?: "No data"
         holder.textCountry.text = dataList[position].country
     }

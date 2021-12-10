@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/addCountryFragment"
-        android:name="com.example.fragmentstest.fragments.AddCountryFragment"
+        android:name="com.example.fragmentstest.fragments.addCountry.AddCountryFragment"
         android:label="fragment_add_country"
         tools:layout="@layout/fragment_add_country" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.fragmentstest.fragments.CountriesListFragment"
+        android:name="com.example.fragmentstest.fragments.countriesList.CountriesListFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_countries_list" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.fragmentstest.fragments.AddDetailsFragment"
+        android:name="com.example.fragmentstest.fragments.addDetails.AddDetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_add_details" >
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/townsListFragment"
-        android:name="com.example.fragmentstest.fragments.DetailsListFragment"
+        android:name="com.example.fragmentstest.fragments.detailsList.DetailsListFragment"
         android:label="fragment_towns_list"
         tools:layout="@layout/fragment_details_list" >
         <argument

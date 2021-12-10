@@ -1,5 +1,6 @@
 package com.example.fragmentstest.rvAdapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,12 +8,20 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fragmentstest.Model.DataModel
+import com.example.fragmentstest.Model.DetailsModel
 import com.example.fragmentstest.R
 
 class CountriesRecyclerViewAdapter(
-    val dataList: List<DataModel>,
     val onClickListener: ClickListener
 ) : RecyclerView.Adapter<CountriesRecyclerViewAdapter.MyViewHolder>() {
+
+    private var dataList = emptyList<DetailsModel>()
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setList(list: List<DetailsModel>) {
+        dataList = list
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -24,7 +33,7 @@ class CountriesRecyclerViewAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.textTitle.text = dataList[position].title
+        holder.textTitle.text = dataList[position].country
         holder.itemView.setOnClickListener {
             onClickListener.onClick(dataList[position])
         }
@@ -43,7 +52,7 @@ class CountriesRecyclerViewAdapter(
     }
 
     interface ClickListener {
-        fun onClick(dataModel: DataModel)
+        fun onClick(dataModel: DetailsModel)
         fun onClick(countryId: Int)
     }
 }
